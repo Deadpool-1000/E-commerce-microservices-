@@ -1,3 +1,3 @@
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://127.0.0.1:27017/auth-service")
+mongoose.connect("mongodb+srv://admin:1234@travelbuddy.mwmagj8.mongodb.net/auth-service")
   .then(() => console.log('Auth Service DB Connected!'));
