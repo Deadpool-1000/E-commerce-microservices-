@@ -4,6 +4,7 @@ const amqp = require('amqplib');
 const Product =require("./Product.js");
 const PORT = process.env.PORT_ONE||3000;
 const isAuthenticated = require("../isAuthenticated.js")
+const isAuthenticatedAdmin = require("../isAuthenticatedAdmin.js")
 let order;
 let connection,channel;
 
@@ -28,7 +29,7 @@ async function connect(){
 connect();
 
 //Create new product
-app.post("/products/create",isAuthenticated,async function(req,res){
+app.post("/products/create",isAuthenticatedAdmin,async function(req,res){
     const {name,description,price} = req.body;
     const newProduct = new Product({name,price,description});
     await newProduct.save();
