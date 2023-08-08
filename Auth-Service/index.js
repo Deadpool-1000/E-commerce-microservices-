@@ -17,7 +17,7 @@ app.post("/auth/register", async function (req, res) {
     if (userAlreadyExists) {
       return res.json({ message: "User Already Exists" });
     } else {
-      const newUser = new User({ email, password, name });
+      const newUser = new User({ email, password, name, role:"user" });
       await newUser.save();
       return res.json(newUser);
     }
@@ -38,7 +38,7 @@ app.post("/auth/login", async function (req, res) {
     const payload = {
       email,
       name: user.name,
-      role:"user"
+      role:user.role
     };
     const token = jwt.sign(payload, "secret", function (err, token) {
       if (err) {
